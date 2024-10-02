@@ -1,0 +1,27 @@
+<package>
+  <name>fetch_gazebo_demo</name>
+  <version>0.9.2</version>
+  <description>
+    Demos for fetch_gazebo package.
+  </description>
+  <author>Michael Ferguson</author>
+  <maintainer email="narora@fetchrobotics.com">Niharika Arora</maintainer>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+
+  <license>BSD</license>
+  <url>http://ros.org/wiki/fetch_gazebo_demo</url>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>actionlib</run_depend>
+  <run_depend>fetch_gazebo</run_depend>
+  <run_depend>fetch_moveit_config</run_depend>
+  <run_depend>fetch_navigation</run_depend>
+  <run_depend>moveit_commander</run_depend>
+  <run_depend>moveit_python</run_depend>
+  <run_depend>simple_grasping</run_depend>
+  <run_depend>teleop_twist_keyboard</run_depend>
+</package>

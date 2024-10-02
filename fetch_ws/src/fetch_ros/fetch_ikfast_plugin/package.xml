@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<package format="2">
+  <name>fetch_ikfast_plugin</name>
+  <version>0.9.1</version>
+  <description>
+    Kinematics plugin for Fetch robot, generated through IKFast
+  </description>
+  <author>Michael Ferguson</author>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="rtoris@fetchrobotics.com">Russell Toris</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+  <license>Apache2</license>
+  <url type="wiki">http://ros.org/wiki/fetch_ikfast_plugin</url>
+  <url type="website">http://docs.fetchrobotics.com/manipulation.html</url>
+  <url type="bugtracker">https://github.com/fetchrobotics/fetch_ros/issues</url>
+  <url type="repository">https://github.com/fetchrobotics/fetch_ros</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>tf2_kdl</build_depend>
+  <build_depend>tf2_eigen</build_depend>
+  <depend>eigen_conversions</depend>
+  <depend>liblapack-dev</depend>
+  <depend>moveit_core</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
+  <export>
+    <moveit_core plugin="${prefix}/fetch_arm_moveit_ikfast_plugin_description.xml"/>
+  </export>
+</package>

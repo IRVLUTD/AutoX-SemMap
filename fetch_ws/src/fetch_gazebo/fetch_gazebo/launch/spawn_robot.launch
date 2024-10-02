@@ -1,0 +1,19 @@
+<launch>
+
+  <env name="GAZEBO_MODEL_PATH" value="$(find fetch_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+
+  <arg name="robot" default="fetch"/>
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+
+<!-- 
+  <include file="$(find aws_robomaker_small_house_world)/launch/small_house.launch" >
+    <arg name="gui" value="$(arg gui)" />
+  </include> -->
+
+  <!-- Oh, you wanted a robot? -->
+  <include file="$(find fetch_gazebo)/launch/include/$(arg robot)_pp.launch.xml" />
+
+
+</launch>

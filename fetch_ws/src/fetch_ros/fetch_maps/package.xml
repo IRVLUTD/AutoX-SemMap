@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fetch_maps</name>
+  <version>0.9.1</version>
+  <description>The fetch_maps package</description>
+
+  <author>Michael Ferguson</author>
+  <author>Michael Gregg</author>
+  <author>Aaron Blasdel</author>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="rtoris@fetchrobotics.com">Russell Toris</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+
+  <license>BSD</license>
+  <url type="wiki">http://ros.org/wiki/fetch_maps</url>
+  <url type="website">http://docs.fetchrobotics.com/navigation.html</url>
+  <url type="bugtracker">https://github.com/fetchrobotics/fetch_ros/issues</url>
+  <url type="repository">https://github.com/fetchrobotics/fetch_ros</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

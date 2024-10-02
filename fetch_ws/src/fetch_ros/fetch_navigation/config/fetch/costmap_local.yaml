@@ -1,0 +1,13 @@
+width: 4.0
+height: 4.0
+resolution: 0.05
+
+inflater:
+ inflation_radius: 0.7
+ cost_scaling_factor: 12.0
+plugins:
+ - {name: obstacles, type: "costmap_2d::FetchDepthLayer"}
+ - {name: inflater,  type: "costmap_2d::InflationLayer"}
+
+obstacles:
+  publish_observations: true

@@ -1,0 +1,32 @@
+# Base profile
+DWAPlannerROS:
+  acc_lim_x: 2.0
+  acc_lim_y: 0.0
+  acc_lim_theta: 5.0
+  max_vel_x: 0.35 #0.35 for sem map #0.4 for explore
+  min_vel_x: 0.1
+  max_vel_y: 0.0
+  min_vel_y: 0.0
+  max_vel_theta: 2.0
+  min_vel_theta: -2.0
+  min_in_place_vel_theta: 0.4
+  holonomic_robot: false
+  max_vel_trans: 0.4 #0.55 for sem map
+
+# Recovery behaviors
+recovery_behavior_enabled: true
+recovery_behaviors:
+  - name: "conservative_reset"
+    type: "clear_costmap_recovery/ClearCostmapRecovery"
+  - name: "rotate_recovery"
+    type: "rotate_recovery/RotateRecovery"
+  #- name: "aggressive_reset"
+    #type: "clear_costmap_recovery/ClearCostmapRecovery"
+
+conservative_reset:
+  reset_distance: 0.3
+rotate_recovery:
+  frequency: 20.0
+  sim_granularity: 0.017
+aggressive_reset: 
+  reset_distance: 0.2

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>fetch_ros</name>
+  <version>0.9.1</version>
+  <description>Fetch ROS, packages for working with Fetch and Freight</description>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+
+  <license>BSD</license>
+  <url type="website">https://docs.fetchrobotics.com/</url>
+  <url type="repository">https://github.com/fetchrobotics/fetch_ros</url>
+  <url type="bugtracker">https://github.com/fetchrobotics/fetch_ros/issues</url>
+  <url type="wiki">https://wiki.ros.org/fetch_ros</url>
+
+  <author>Alex Moriarty</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>fetch_calibration</exec_depend>
+  <exec_depend>fetch_depth_layer</exec_depend>
+  <exec_depend>fetch_description</exec_depend>
+  <exec_depend>fetch_ikfast_plugin</exec_depend>
+  <exec_depend>fetch_maps</exec_depend>
+  <exec_depend>fetch_moveit_config</exec_depend>
+  <exec_depend>fetch_navigation</exec_depend>
+  <exec_depend>fetch_teleop</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

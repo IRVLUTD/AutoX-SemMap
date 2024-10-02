@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fetch_depth_layer</name>
+  <version>0.9.1</version>
+  <description>The fetch_depth_layer package</description>
+
+  <author>Michael Ferguson</author>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="rtoris@fetchrobotics.com">Russell Toris</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+
+  <license>BSD</license>
+  <url type="wiki">http://ros.org/wiki/fetch_depth_layer</url>
+  <url type="website">http://docs.fetchrobotics.com/perception.html</url>
+  <url type="bugtracker">https://github.com/fetchrobotics/fetch_ros/issues</url>
+  <url type="repository">https://github.com/fetchrobotics/fetch_ros</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>costmap_2d</depend>
+  <depend>cv_bridge</depend>
+  <depend>geometry_msgs</depend>
+  <depend>image_transport</depend>
+  <depend>nav_msgs</depend>
+  <depend>pluginlib</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2_ros</depend>
+
+  <export>
+    <costmap_2d plugin="${prefix}/costmap_plugins.xml" />
+  </export>
+</package>

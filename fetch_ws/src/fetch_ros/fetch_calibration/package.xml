@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>fetch_calibration</name>
+  <version>0.9.1</version>
+  <description>
+    Launch and configuration files for calibrating Fetch using the 'robot_calibration' package.
+  </description>
+
+  <author>Michael Ferguson</author>
+  <maintainer email="erelson@fetchrobotics.com">Eric Relson</maintainer>
+  <maintainer email="csaldanha@fetchrobotics.com">Carl Saldanha</maintainer>
+  <maintainer email="selliott@fetchrobotics.com">Sarah Elliott</maintainer>
+  <maintainer email="rtoris@fetchrobotics.com">Russell Toris</maintainer>
+  <maintainer email="opensource@fetchrobotics.com">Fetch Robotics Open Source Team</maintainer>
+
+  <license>Apache2</license>
+  <url type="wiki">http://ros.org/wiki/fetch_calibration</url>
+  <url type="website">http://docs.fetchrobotics.com/calibration.html</url>
+  <url type="bugtracker">https://github.com/fetchrobotics/fetch_ros/issues</url>
+  <url type="repository">https://github.com/fetchrobotics/fetch_ros</url>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 2">python-setuptools</buildtool_depend>
+  <buildtool_depend condition="$ROS_PYTHON_VERSION == 3">python3-setuptools</buildtool_depend>
+
+  <exec_depend version_gte="0.5.1">robot_calibration</exec_depend>
+</package>

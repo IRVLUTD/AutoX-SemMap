@@ -1,0 +1,98 @@
+# Planner selection
+base_global_planner: "navfn/NavfnROS"
+base_local_planner: "dwa_local_planner/DWAPlannerROS"
+#base_local_planner: "teb_local_planner/TebLocalPlannerROS"
+
+# Recovery behaviors are defined in robot folders
+
+# Oscillation
+oscillation_timeout: 5.0
+oscillation_distance: 0.5
+
+# Global planner
+planner_frequency: 0.0
+planner_patience: 5.0
+NavfnROS:
+  allow_unknown: false  # TODO: investigate this
+  default_tolerance: 2.0
+  # do not restrict planner
+  planner_window_x: 0.0
+  planner_window_y: 0.0
+  # debug
+  visualize_potential: false
+
+# Local planner
+controller_frequency: 25.0
+controller_patience: 15.0
+DWAPlannerROS:
+  # base vel/accel profile is in robot folders
+  # tolerances (defaults)
+  yaw_goal_tolerance: 0.5
+  xy_goal_tolerance: 1.2
+  latch_xy_goal_tolerance: false
+  # forward simulation
+  sim_time: 2.0
+  sim_granularity: 0.025
+  angular_sim_granularity: 0.025
+  vx_samples: 10
+  vtheta_samples: 25
+  # scoring (defaults)
+  meter_scoring: true
+  path_distance_bias: 0.5
+  goal_distance_bias: 0.4
+  occdist_scale: 0.00525
+  heading_lookahead: 0.325
+  heading_scoring_timestep: 0.8
+  heading_scoring: true
+  dwa: true
+  # other
+  oscillation_reset_dist: 0.05
+  # debug
+  publish_cost_grid_pc: false
+  publish_traj_pc: true
+
+TebLocalPlannerROS:
+  odom_topic: "odom"
+  map_frame: "map"
+  teb_autosize: true
+  dt_ref: 0.3
+  dt_hysteresis: 0.1
+  max_global_plan_lookahead_dist: 3.0
+  global_plan_prune_distance: 1.0
+  force_reinit_new_goal_dist: 1.0
+  feasibility_check_no_poses: 5
+  max_vel_x: 0.55
+  max_vel_x_backwards: 0.2
+  max_vel_theta: 1.0
+  acc_lim_x: 2.0
+  acc_lim_theta: 1.0
+  min_turning_radius: 0
+  xy_goal_tolerance: 0.3
+  yaw_goal_tolerance: 0.2
+  free_goal_vel: false
+  obstacle_avoidance_capabilities: false
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+  obstacle_poses_affected: 30
+  costmap_converter_plugin: ""
+  costmap_converter_spin_thread: true
+  costmap_converter_rate: 5.0
+  min_obstacle_dist: 0.5
+  inflation_dist: 0.6
+  dynamic_obstacle_inflation_dist: 0.6
+  dynamic_obstacle_avoidance: true
+  no_inner_optimization: false
+  look_ahead_threshold: 1.0
+  look_back_threshold: 0.2
+  optimization_costmap_weight: 0.5
+  weight_optimaltime: 1.0
+  weight_shortest_path: 1.0
+  weight_obstacle: 50.0
+  weight_inflation: 0.2
+  weight_dynamic_obstacle: 10.0
+  weight_viapoint: 1.0
+  weight_prefer_goal_orientation: 1.0
+  weight_adapt_vel: 0.2
+  footprint_model:
+    type: "circular"
+    radius: 0.32

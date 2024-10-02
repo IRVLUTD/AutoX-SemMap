@@ -1,0 +1,9 @@
+<launch>
+
+  <arg name="robot" default="fetch"/>
+
+  <!-- Oh, you wanted a robot? -->
+  <include file="$(find fetch_gazebo)/launch/include/$(arg robot)_pp.launch.xml" />
+
+
+</launch>
