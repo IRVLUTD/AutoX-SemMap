@@ -42,8 +42,6 @@ class robokitRealtime:
         self.gdino = GroundingDINOObjectPredictor()
         self.SAM = SegmentAnythingPredictor()
 
-        # self.label_pub = rospy.Publisher("seg_label_refined", Image, queue_size=10)
-        # self.score_pub = rospy.Publisher("seg_score", Image, queue_size=10)
         self.image_pub = rospy.Publisher("seg_image", Image, queue_size=10)
         
         # self.read_semantic_data()
@@ -70,14 +68,13 @@ class robokitRealtime:
         marker.action = Marker.ADD
         marker.pose.position.x = pose[0]
         marker.pose.position.y = pose[1]
-        marker.pose.position.z = pose[2] * 0  # Adjust the Z-height if needed
+        marker.pose.position.z = pose[2] * 0  
         marker.pose.orientation.w = 1.0
-        marker.scale.x = 0.3  # Adjust the size
+        marker.scale.x = 0.3 
         marker.scale.y = 0.3
         marker.scale.z = 0.3
-        marker.color.a = 1.0  # Full opacity
+        marker.color.a = 1.0  
 
-        # Color based on category
         if category == "table":
             marker.color.r = 0.0
             marker.color.g = 0.0
@@ -105,12 +102,10 @@ class robokitRealtime:
             pose = data["pose"]
             category = data["category"]
 
-            # Create a marker for each node
             marker = self.create_marker(pose, category, node_id)
             marker_array.markers.append(marker)
             node_id += 1
 
-        # Publish the marker array
         self.marker_pub.publish(marker_array)
 
     def run_network(self):
@@ -131,8 +126,7 @@ class robokitRealtime:
             im = im_color.astype(np.uint8)[:, :, (2, 1, 0)]
             img_pil = PILImg.fromarray(im)
 
-            # bboxes, phrases, gdino_conf = self.gdino.predict(img_pil, self.text_prompt)
-            # Adding Itay's filter values
+          
             bboxes, phrases, gdino_conf = self.gdino.predict(img_pil, self.text_prompt,0.55, 0.55)
             bboxes, gdino_conf, phrases, flag = filter(bboxes, gdino_conf, phrases, 1, 0.8, 0.8, 0.8, 0.01, True)
             if flag:
@@ -166,7 +160,6 @@ class robokitRealtime:
                 print(f"pose {pose} class {phrases[i]}")
                 if pose is None:
                     continue
-                # self.semantic_poses[phrases[i]], is_nearby = is_nearby_in_map(self.semantic_poses[phrases[i]], pose)
                 self.pose_list[phrases[i]], _is_nearby = is_nearby_in_map(
                             self.pose_list[phrases[i]], pose, threshold=self.threshold[phrases[i]]
                         )
