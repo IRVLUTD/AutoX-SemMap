@@ -4,7 +4,7 @@
 
 <center>
 
-[arXiv](https://arxiv.org/abs/2409.15493)  **|**[Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/q3bfSFYbX08)
+[arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/q3bfSFYbX08)
 
 </center>
 
@@ -71,7 +71,7 @@ Next, install the python modules required.
 pip install -r requirements.txt
 ```
 
-## C. Compiling workspace
+## D. Compiling workspace
 Compile and source the ROS workspace using the following commands:
 ```
 cd fetch_ws
@@ -85,7 +85,7 @@ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 source devel/setp.bash
 ```
 
-## D. Install Robokit
+## E. Install Robokit
 Please refer to the instructions [here](robokit/README.md) to install the robokit module. Robokit is a stand alone module and is not related to the ros workspace here. Therefore, ***do not source the workspace during instalaltion or while running Robokit***. 
 
 <br/>
@@ -187,6 +187,11 @@ cd scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the updated semantic map is stored as ***graph_updated.json***
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 # Citation
