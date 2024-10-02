@@ -1,0 +1,12 @@
+transforms3d
+empy==3.3.4
+pyyaml
+defusedxml
+catkin_pkg
+rospkg
+lxml
+opencv-python
+numpy
+Pillow
+networkx
+shapely
