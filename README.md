@@ -1,15 +1,48 @@
-# Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots​​
+<h1 align="center" style="font-size: 1.8em; font-weight: bold;">
+  Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots​​
+</h1>
 
-<p style="text-align:center;">Sai Haneesh Allu, Itay Kadosh, Tyler Summers, Yu Xiang</p>
+<p align="center">
+  <a href="https://saihaneeshallu.github.io/">Sai Haneesh Allu</a>, 
+  <a href="https://www.linkedin.com/in/itay-kadosh-695718239/">Itay Kadosh</a>, 
+  <a href="https://personal.utdallas.edu/~tyler.summers/">Tyler Summers</a>, 
+  <a href="https://yuxng.github.io">Yu Xiang</a>
+</p>
 
-<center>
+<div align="center"">
 
 [arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/q3bfSFYbX08)
 
-</center>
+</div>
 
+<br/>
 
-Code base for autonomous exploration, construction and update of semantic map in real-time. 
+<!-- ![image info](./media/overview.webp) -->
+<div align="justify">
+We introduce a new robotic system that enables a mobile robot to autonomously explore an unknown
+environment, build a semantic map of the environment,
+and subsequently update the semantic map to reflect
+environment changes, such as location changes of objects.
+Our system leverages a LiDAR scanner for 2D occupancy
+grid mapping and an RGB-D camera for object perception.
+We introduce a semantic map representation that combines
+a 2D occupancy grid map for geometry, with a topological
+map for object semantics. This map representation enables
+us to effectively update the semantics by deleting or adding
+nodes to the topological map. Our system has been tested
+on a Fetch robot. The robot can semantically map a
+93m×90m floor and update the
+</div>
+
+<br/>
+<br/>
+
+<p align="center">
+  <img src="./media/overview.webp" alt="image info" width="700"/>
+</p>
+
+<br/>
+
 
 # Index
 
@@ -21,7 +54,8 @@ Code base for autonomous exploration, construction and update of semantic map in
 
 <br/>
 <br/>
-<br/>
+
+
 
 # Installation
 The following subsections provides detailed installation guidelines related to workspace setup, dependencies and other requirements to test this work effectively. 
@@ -62,7 +96,7 @@ conda activate sem-map
 ```
 
 ## C. Install dependencies
-This script will install the ros dependencies required for this work.
+This script will install the ROS dependencies required for this work.
 ```
 ./install_ros_dependencies.sh
 ```
@@ -79,27 +113,43 @@ catkin_make
 source devel/setup.bash
 ```
 
-> If the compilation doesn't conisder python3 by default, compile with the following command. Make sure to use correct PYTHONPATH.
+> If the compilation doesn't conisder python3 by default, compile with the following command. Make sure to use correct python path.
 ```
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 source devel/setp.bash
 ```
 
 ## E. Install Robokit
-Please refer to the instructions [here](robokit/README.md) to install the robokit module. Robokit is a stand alone module and is not related to the ros workspace here. Therefore, ***do not source the workspace during instalaltion or while running Robokit***. 
+Please refer to the instructions [here](robokit/README.md) to install the robokit module. Robokit is a stand alone module for running object detection and segmentation. It is not related to the ROS workspace here. Therefore, ***do not source the ROS workspace during installation or while running Robokit***. 
+
+<br/>
+
+**NOTE:** *Make sure to activate the conda environment and source the workspace in each terminal. (do not source the workspace for robokit)* 
+
+
+```
+conda activate sem-map
+source fetch_ws/devel/setup.bash
+```
 
 <br/>
 <br/>
 <br/>
 
 # Initialization
-This section covers the steps to start the simulation environment and spawn the robot in the scene. 
+This section covers the steps to start the simulation environment and spawn the robot in the scene. Run the following commands, each in a separate terminal. You should be able to see the fetch robot spawned in the environment. 
 ## Launch environment and spawn the robot
 ```
 roslaunch aws_robomaker_small_house_world small_house.launch gui:=true
 roslaunch fetch_gazebo spawn_robot.launch
 ```
+Once the robot is spawned, run the following scripts to tuck the arm and set it's head position. 
 
+```
+cd fetch_ws/src/fetch_gazebo/fetch_gazebo/
+python tuck_arm.py
+python set_head.py
+```
 <br/>
 <br/>
 <br/>
@@ -113,13 +163,13 @@ Starts the GMapping ROS node.
 roslaunch fetch_navigation fetch_mapping.launch
 ```
 ## B. Record robot trajectory
-This script first creates a data-folder of format <Year-month-date_Hour-Minute-Seconds>. Then saves the data points in .npz format. Specify the time-interval between consecutive data points as the argument.
+This script first creates a data-folder of format <Year-month-date_Hour-Minute-Seconds>/pose. Then saves the data points in pose folder, in .npz format. Specify the time-interval between consecutive data points as the argument.
 ```
 cd scripts
 python save_data.py <time-interval>
 ```
 ## C. Exploration
-This command launches the explroation node. When the exploration ends, it saves  ***map.pgm*** and ***map.yaml*** files in the user's HOME directory. 
+This command launches the exploration node. When the exploration ends, it saves  ***map.pgm*** and ***map.yaml*** files in the user's HOME directory. 
 ```
 roslaunch explore_lite explore_n_save.launch
 ```
@@ -135,12 +185,12 @@ cd scripts
 ```
 
 ## A. Extract the robot exploration trajectory points
-From the saved data-folder at the end of exploration, first get the recorded robot poses. These poses are saved by default in ***robot_trajectory.json***.
+From the saved data-folder at the end of exploration, first get the recorded robot poses. These poses will be saved by default in ***robot_trajectory.json*** file.
 ```
 python extract_robot_trajectory.py <data-folder>
 ```
 ## B. Generate traversal trajectory - Travelling Salesman Problem 
-Next, sample the poses and plan the sequence to vsit the sampled points at low cost, using a Traveling Salesman Problem fomrulation.  
+Next, sample the poses and plan the sequence to visit the sampled points at low cost, using a Traveling Salesman Problem fomrulation.  
 ```
 python tsp_surveillance_trajectory.py robot_trajectory.json
 ```
@@ -151,23 +201,24 @@ This saves the sequence of sampled points as ***surveillance_traj.npz*** .
 <br/>
 
 # Semantic Map Construction and Update
-To construct or update the semantic map, the robot first needs to localize itself in the built map and traverse the environment to see the things. For this, either move the robot to initial position (x=0,y=0.yaw=0) in gazebo or delete the robot and spawn it again. 
+To construct or update the semantic map, the robot first needs to localize itself in the built map and traverse the environment to see the things. For this, either move the robot to initial position (x=0, y=0, yaw=0) in gazebo or delete the robot in gazebo and spawn it again ( make sure to tuck and set the head pose). 
 
 ## A. Localization
+Launch the localization module while specifying the saved *map.yaml* file path.
+
 ```
-source feth_ws/devel/setup.bash
 roslaunch fetch navigation fetch_localize.launch map_file:=<absolute-path-of-map.yaml>
 ```
-In another termianl publish the initial pose of the robot. This 
+In another termianl publish the initial pose of the robot. This helps the localization moduls to have better initial estimate. 
 ```
 rosrun fetch_navigation pub_initial_pose.py
 ```
 
 ## B. Construction
-To construct the semantic map, start the object detection and segmentation module, and perform object association. Run the following scripts simultaneously in two terminals to construct the semnantic map while traversing the environment.  
+To construct the semantic map, start the object detection and segmentation module, and perform object association while traversing the environment. Run the following scripts simultaneously in two terminals to construct the semnantic map while traversing the environment.  
 ```
 cd robokit
-python semanticmap_construction.py
+python semantic_map_construction.py
 ```
 
 ```
@@ -176,10 +227,10 @@ python navigate.py
 ```
 Once the traversal is completed, close the scripts and the semantic map is stored as ***graph.json***
 ## C. Update
-Similarly run the following scripts simultaneously in two terminals to construct the semnantic map while traversing the environment.  
+Similar to construction phase, run the following scripts simultaneously in two terminals to update the semantic map while traversing the environment.  You may delete, add or relocate objects in the gazebo environment. 
 ```
 cd robokit
-python semanticmap_update.py
+python semantic_map_update.py
 ```
 
 ```
