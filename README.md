@@ -30,8 +30,9 @@ a 2D occupancy grid map for geometry, with a topological
 map for object semantics. This map representation enables
 us to effectively update the semantics by deleting or adding
 nodes to the topological map. Our system has been tested
-on a Fetch robot. The robot can semantically map a
-93m×90m floor and update the
+on a Fetch robot. The robot semantically mapped a
+93m×90m floor and updated the semantic map once objects
+are moved in the environment.
 </div>
 
 <br/>
@@ -150,6 +151,11 @@ cd fetch_ws/src/fetch_gazebo/fetch_gazebo/
 python tuck_arm.py
 python set_head.py
 ```
+Once the initialization is done successfully, you should see the following scene.
+
+<p align="center">
+  <img src="./media/env_spawn.jpg" alt="image info" width="700"/>
+</p>
 <br/>
 <br/>
 <br/>
@@ -157,7 +163,13 @@ python set_head.py
 # Mapping and Exploration
 Once system has been initialized, we proceed to explore and map the environment, while also recording robot's camera pose and base_link pose. To achieve this, follow the steps below in this sequence. 
 
+Run rviz to visualize next steps.
+```
+cd fetch_ws
+rosrun rviz rviz -d experiment.rviz
+```
 ## A. Mapping
+
 Starts the GMapping ROS node. 
 ```
 roslaunch fetch_navigation fetch_mapping.launch
@@ -173,7 +185,11 @@ This command launches the exploration node. When the exploration ends, it saves 
 ```
 roslaunch explore_lite explore_n_save.launch
 ```
-
+<div align="center">
+<video width="960" height="320" controls>
+  <source src="media/exploration.mp4" type="video/mp4">
+</video>
+</div>
 <br/>
 <br/>
 <br/>
@@ -226,6 +242,11 @@ cd scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the semantic map is stored as ***graph.json***
+<div align="center">
+<video width="960" height="480" controls>
+  <source src="./media/semconstruct.mp4" type="video/mp4">
+</div>
+
 ## C. Update
 Similar to construction phase, run the following scripts simultaneously in two terminals to update the semantic map while traversing the environment.  You may delete, add or relocate objects in the gazebo environment. 
 ```
@@ -238,6 +259,7 @@ cd scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the updated semantic map is stored as ***graph_updated.json***
+
 
 <br/>
 <br/>
