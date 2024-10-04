@@ -76,7 +76,9 @@ class Navigate:
             print(wait)
 
     def track_trajectory(self, waypoints=[]):
-        for waypoint in waypoints:
+        for i, waypoint in enumerate(waypoints):
+                if i==0:
+                    continue
                 if self.pause == 0:
                     self.navigate_to(waypoint)
                 else:
