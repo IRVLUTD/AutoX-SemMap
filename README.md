@@ -52,7 +52,7 @@ are moved in the environment.
 3. [Mapping and Exploration](#mapping-and-exploration)
 4. [Environment Traversal planning](#environment-traversal-planning)
 5. [Semantic Map Construction and Update](#semantic-map-construction-and-update)
-6. [Real-World Demo](#real-wolrd-demo)
+6. [Real World Demo](#real-world-demo)
 
 <br/>
 <br/>
@@ -266,7 +266,7 @@ Once the traversal is completed, close the scripts and the updated semantic map 
 <br/>
 <br/>
 
-# Real-World Demo
+# Real World Demo
 These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. click to view the vidoes. 
 
 
