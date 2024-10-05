@@ -48,10 +48,11 @@ are moved in the environment.
 # Index
 
 1. [Installation](#installation)
-2. [Initialization](Initialization)
-3. [Mapping and Exploration](Mapping-and-Exploration)
-4. [Environment Traversal planning](Environment-Traversal-planning)
-5. [Semantic Map Construction and Update](Semantic-Map-Construction-and-Update)
+2. [Initialization](#initialization)
+3. [Mapping and Exploration](#mapping-and-exploration)
+4. [Environment Traversal planning](#environment-traversal-planning)
+5. [Semantic Map Construction and Update](#semantic-map-construction-and-update)
+6. [Real-World Demo](#real-wolrd-demo)
 
 <br/>
 <br/>
@@ -185,11 +186,9 @@ This command launches the exploration node. When the exploration ends, it saves 
 ```
 roslaunch explore_lite explore_n_save.launch
 ```
-<div align="center">
-<video width="960" height="320" controls>
-  <source src="media/exploration.mp4" type="video/mp4">
-</video>
-</div>
+
+https://github.com/user-attachments/assets/cf0d4105-ab1b-430b-87c4-44465b01f557
+
 <br/>
 <br/>
 <br/>
@@ -242,10 +241,11 @@ cd scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the semantic map is stored as ***graph.json***
-<div align="center">
-<video width="960" height="480" controls>
-  <source src="./media/semconstruct.mp4" type="video/mp4">
-</div>
+
+
+https://github.com/user-attachments/assets/6fb81b0b-8309-4a54-b3d9-acc76b27f575
+
+
 
 ## C. Update
 Similar to construction phase, run the following scripts simultaneously in two terminals to update the semantic map while traversing the environment.  You may delete, add or relocate objects in the gazebo environment. 
@@ -265,6 +265,27 @@ Once the traversal is completed, close the scripts and the updated semantic map 
 <br/>
 <br/>
 <br/>
+
+# Real-World Demo
+These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. click to view the vidoes. 
+
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.youtube.com/watch?v=yVzF-y6eULY">
+        <img src="https://img.youtube.com/vi/yVzF-y6eULY/0.jpg" style="width:100%;">
+      </a>
+      <p>Video 1: Explorationand Mapping</p>
+    </td>
+    <td align="center">
+      <a href="https://www.youtube.com/watch?v=h-wM1g0Hk6g">
+        <img src="https://img.youtube.com/vi/h-wM1g0Hk6g/0.jpg" style="width:100%;">
+      </a>
+      <p>Video 2: Semantic Map construction</p>
+    </td>
+  </tr>
+</table>
 
 
 # Citation
