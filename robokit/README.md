@@ -1,5 +1,5 @@
 # RoboKit
-A toolkit for robotic tasks
+A toolkit for robotic tasks. This toolkit is compiled by [Jishnu Jaykumar P](https://jishnujayakumar.github.io/).
 
 ## Features
 - Zero-shot classification using OpenAI CLIP.
