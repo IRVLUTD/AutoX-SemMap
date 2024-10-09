@@ -96,8 +96,13 @@ We strongly recommend using a virtual environment for this work, preferably Anac
 conda create -n sem-map python==3.9
 conda activate sem-map
 ```
+## C. Clone the repository
+```
+git clone https://github.com/IRVLUTD/AutoX-SemMap.git
+cd AutoX-SemMap
+```
 
-## C. Install dependencies
+## D. Install dependencies
 This script will install the ROS dependencies required for this work.
 ```
 ./install_ros_dependencies.sh
@@ -107,7 +112,7 @@ Next, install the python modules required.
 pip install -r requirements.txt
 ```
 
-## D. Compiling workspace
+## E. Compiling workspace
 Compile and source the ROS workspace using the following commands:
 ```
 cd fetch_ws
@@ -121,7 +126,7 @@ catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
 source devel/setp.bash
 ```
 
-## E. Install Robokit
+## F. Install Robokit
 Please refer to the instructions [here](robokit/README.md) to install the robokit module. Robokit is a stand alone module for running object detection and segmentation. It is not related to the ROS workspace here. Therefore, ***do not source the ROS workspace during installation or while running Robokit***. 
 
 <br/>
@@ -176,7 +181,7 @@ Starts the GMapping ROS node.
 roslaunch fetch_navigation fetch_mapping.launch
 ```
 ## B. Record robot trajectory
-This script first creates a data-folder of format <Year-month-date_Hour-Minute-Seconds>/pose. Then saves the data points in pose folder, in .npz format. Specify the time-interval between consecutive data points as the argument.
+This script first creates a data-folder of format <Year-month-date_Hour-Minute-Seconds>/pose. Then saves the data points in pose folder, in .npz format. Specify the time-interval (in seconds) between consecutive data points as the argument. You may set the time interval to be 1 as a nominal value. 
 ```
 cd scripts
 python save_data.py <time-interval>
@@ -194,7 +199,7 @@ https://github.com/user-attachments/assets/cf0d4105-ab1b-430b-87c4-44465b01f557
 <br/>
 
 # Environment Traversal planning
-This section describes how to plan the robot's traversal through the environment.
+This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire evnvironment.
 ```
 cd scripts
 ```
@@ -209,7 +214,12 @@ Next, sample the poses and plan the sequence to visit the sampled points at low 
 ```
 python tsp_surveillance_trajectory.py robot_trajectory.json
 ```
-This saves the sequence of sampled points as ***surveillance_traj.npz*** .
+This saves the sequence of sampled points as ***surveillance_traj.npz*** and alos displays the seques as shown below. 
+
+
+https://github.com/user-attachments/assets/10d6edcd-1a69-45dc-8038-68448d104e47
+
+
 
 <br/>
 <br/>
@@ -224,7 +234,7 @@ Launch the localization module while specifying the saved *map.yaml* file path.
 ```
 roslaunch fetch navigation fetch_localize.launch map_file:=<absolute-path-of-map.yaml>
 ```
-In another termianl publish the initial pose of the robot. This helps the localization moduls to have better initial estimate. 
+In another terminal publish the initial pose of the robot. This helps the localization moduls to have better initial estimate. 
 ```
 rosrun fetch_navigation pub_initial_pose.py
 ```
