@@ -212,7 +212,7 @@ https://github.com/user-attachments/assets/cf0d4105-ab1b-430b-87c4-44465b01f557
 <br/>
 
 # Environment Traversal planning
-This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire evnvironment.
+This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire evnvironment.  Copy the ***map.pgm*** and ***map.yaml*** files saved after exploration, from the home directory to this scripts. Update the image path in ***map.yaml*** to reflect correct ***map.pgm*** image path.
 ```
 cd scripts
 ```
