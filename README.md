@@ -44,6 +44,18 @@ are moved in the environment.
 
 <br/>
 
+# Citation
+Please cite this work if it helps in your research
+```
+@inproceedings{allu2024semanticmapping,
+      title={Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots},
+      author={Allu, Sai Haneesh and Kadosh, Itay and Summers, Tyler and Xiang, Yu},
+      journal={arXiv preprint arXiv:2409.15493},
+      year={2024}
+    }
+```
+
+For any questions regarding this work, contact [Sai Haneesh Allu](https://saihaneeshallu.github.io/). For any issues regarding this code, please raise an [issue](https://github.com/IRVLUTD/AutoX-SemMap/issues).
 
 # Index
 
@@ -52,7 +64,8 @@ are moved in the environment.
 3. [Mapping and Exploration](#mapping-and-exploration)
 4. [Environment Traversal planning](#environment-traversal-planning)
 5. [Semantic Map Construction and Update](#semantic-map-construction-and-update)
-6. [Real World Demo](#real-world-demo)
+6. [Running on a real robot system](#running-on-a-real-robot-system)
+7. [Real World Demo](#real-world-demo)
 
 <br/>
 <br/>
@@ -274,10 +287,36 @@ Once the traversal is completed, close the scripts and the updated semantic map 
 <br/>
 <br/>
 <br/>
+
+
+# Running on a real robot system
+## A. Running on a Fetch robot
+
+Since fetch robot doesn't have a GPU, we assume you have a remote system connected to Fetch robot via WiFi or Ethernet connection. You can use this repository as it is and follow the instructions to install it on your remote system. You can skip the installation of gazebo and the initialization section as you have the actual robot. Other than that you can run the sections [Mapping and Exploration](#mapping-and-exploration) ,  [Environment Traversal planning](#environment-traversal-planning) ,  [Semantic Map Construction and Update](#semantic-map-construction-and-update)  as described. 
+
+
+## B. Running on any other robot
+
+We assume that either your robot has a GPU or you use a remote system with GPU and connect to robot, and have your ros workspace containing mapping and localization packages. Assuming you have the workspace named **_"catkin_ws"_**. 
+  1.  Follow steps mentioned in Installation -  [B](#b-create-conda-environment), [C](#c-clone-the-repository), [D](#d-install-dependencies), [F](#f-install-robokit) sections.
+
+  2. Clone the exploration package in your workspace and compile your workspace
+     ```
+     cd catkin_ws/src
+     git clone https://github.com/IRVLUTD/dynamic-window-frontier-exploration.git 
+     ```
+     Compile your workspace.
+
+  2. Next, to run mapping and exploration, follow steps mentioned in [Mapping and Exploration](#mapping-and-exploration) (skip section A in it and run your mapping module).
+  3. Next, follow the instructions in [Environment Traversal planning](#environment-traversal-planning), to generate the traversal trajectory.
+  4. Finally, to construct the semantic map and also perform the update step, follow the instructions in [Semantic Map Construction and Update](#semantic-map-construction-and-update) ( skip section A in this and run your localization module). 
+
+<br/>
+<br/>
 <br/>
 
 # Real World Demo
-These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. click to view the vidoes. 
+These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. Click to view the vidoes. 
 
 
 <table>
@@ -298,13 +337,6 @@ These videos showcase brief clips of experiments demonstrating autonomous explor
 </table>
 
 
-# Citation
-Please cite this work if it helps in your research
-```
-@inproceedings{allu2024semanticmapping,
-      title={Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots},
-      author={Allu, Sai Haneesh and Kadosh, Itay and Summers, Tyler and Xiang, Yu},
-      journal={arXiv preprint arXiv:2409.15493},
-      year={2024}
-    }
-```
+# Acknowledgement
+This work was supported by the DARPA Perceptuallyenabled Task Guidance (PTG) Program under contract number HR00112220005 and the Sony Research Award Program. The work of T. Summers was supported by the United States Air Force Office of Scientific Research under Grant FA9550- 23-1-0424 and the National Science Foundation under Grant ECCS-2047040. We would like to thank our colleague, [Jishnu Jaykumar P](https://jishnujayakumar.github.io/), for his assistance during the experiments.
+
