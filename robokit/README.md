@@ -21,7 +21,6 @@ Before installing, set the CUDA_HOME path. Make sure to replace your cuda path b
 export CUDA_HOME=/use/local/cuda
 ```
 ```sh
-git clone https://github.com/IRVLUTD/robokit.git && cd robokit 
 pip install -r requirements.txt
 conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 python setup.py install
@@ -41,6 +40,24 @@ NameError: name '_C' is not defined
 - FeatUp: [`test_featup.py`](test/test_featup.py)
 - Test Datasets: [`test_dataset.py`](test/test_dataset.py)
   - `python test_dataset.py --gpu 0 --dataset <ocid_object_test/osd_object_test>`
+
+## Sample output of GroundingDINO + SAM
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.youtube.com/watch?v=yVzF-y6eULY">
+        <img src="imgs/color-000089.png" style="width:100%;">
+      </a>
+      <p>Input Image</p>
+    </td>
+    <td align="center">
+      <a href="https://www.youtube.com/watch?v=h-wM1g0Hk6g">
+        <img src="imgs/color-000089-segmented.png" style="width:100%;">
+      </a>
+      <p>Segmented Image</p>
+    </td>
+  </tr>
+</table>
 
 ## Roadmap
 
