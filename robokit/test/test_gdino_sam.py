@@ -46,4 +46,4 @@ if __name__ == "__main__":
     # Run the main function with the input image path
     # app.run(main, ['imgs/color-000078.png'])
     # app.run(main, ['imgs/color-000019.png'])
-    app.run(main, ['imgs/irvl-clutter-test.png'])
+    app.run(main, ['imgs/color-000089.png'])
