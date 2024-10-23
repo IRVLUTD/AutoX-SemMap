@@ -149,6 +149,7 @@ Please refer to the instructions [here](robokit/README.md) to install the roboki
 
 ```
 conda activate sem-map
+cd AutoX-SemMap
 source fetch_ws/devel/setup.bash
 ```
 
@@ -166,7 +167,7 @@ roslaunch fetch_gazebo spawn_robot.launch
 Once the robot is spawned, run the following scripts to tuck the arm and set it's head position. 
 
 ```
-cd fetch_ws/src/fetch_gazebo/fetch_gazebo/
+cd AutoX-SemMap/fetch_ws/src/fetch_gazebo/fetch_gazebo/scripts
 python tuck_arm.py
 python set_head.py
 ```
@@ -184,7 +185,7 @@ Once system has been initialized, we proceed to explore and map the environment,
 
 Run rviz to visualize next steps.
 ```
-cd fetch_ws
+cd AutoX-SemMap/fetch_ws
 rosrun rviz rviz -d experiment.rviz
 ```
 ## A. Mapping
@@ -196,7 +197,7 @@ roslaunch fetch_navigation fetch_mapping.launch
 ## B. Record robot trajectory
 This script first creates a data-folder of format <Year-month-date_Hour-Minute-Seconds>/pose. Then saves the data points in pose folder, in .npz format. Specify the time-interval (in seconds) between consecutive data points as the argument. You may set the time interval to be 1 as a nominal value. 
 ```
-cd scripts
+cd AutoX-SemMap/scripts
 python save_data.py <time-interval>
 ```
 ## C. Exploration
@@ -214,7 +215,7 @@ https://github.com/user-attachments/assets/cf0d4105-ab1b-430b-87c4-44465b01f557
 # Environment Traversal planning
 This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire evnvironment.  Copy the ***map.pgm*** and ***map.yaml*** files saved after exploration, from the home directory to this scripts. Update the image path in ***map.yaml*** to reflect correct ***map.pgm*** image path.
 ```
-cd scripts
+cd AutoX-SemMap/scripts
 ```
 
 ## A. Extract the robot exploration trajectory points
@@ -255,12 +256,12 @@ rosrun fetch_navigation pub_initial_pose.py
 ## B. Construction
 To construct the semantic map, start the object detection and segmentation module, and perform object association while traversing the environment. Run the following scripts simultaneously in two terminals to construct the semnantic map while traversing the environment.  
 ```
-cd robokit
+cd AutoX-SemMap/robokit
 python semantic_map_construction.py
 ```
 
 ```
-cd scripts
+cd AutoX-SemMap/scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the semantic map is stored as ***graph.json***
@@ -273,12 +274,12 @@ https://github.com/user-attachments/assets/6fb81b0b-8309-4a54-b3d9-acc76b27f575
 ## C. Update
 Similar to construction phase, run the following scripts simultaneously in two terminals to update the semantic map while traversing the environment.  You may delete, add or relocate objects in the gazebo environment. 
 ```
-cd robokit
+cd AutoX-SemMap/robokit
 python semantic_map_update.py
 ```
 
 ```
-cd scripts
+cd AutoX-SemMap/scripts
 python navigate.py
 ```
 Once the traversal is completed, close the scripts and the updated semantic map is stored as ***graph_updated.json***
