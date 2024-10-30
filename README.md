@@ -326,7 +326,7 @@ These videos showcase brief clips of experiments demonstrating autonomous explor
       <a href="https://www.youtube.com/watch?v=yVzF-y6eULY">
         <img src="https://img.youtube.com/vi/yVzF-y6eULY/0.jpg" style="width:100%;">
       </a>
-      <p>Video 1: Explorationand Mapping</p>
+      <p>Video 1: Exploration and Mapping</p>
     </td>
     <td align="center">
       <a href="https://www.youtube.com/watch?v=h-wM1g0Hk6g">
