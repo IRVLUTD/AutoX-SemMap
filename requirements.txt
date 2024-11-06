@@ -6,7 +6,7 @@ catkin_pkg
 rospkg
 lxml
 opencv-python
-numpy
+numpy==1.26.4
 Pillow
 networkx
 shapely
