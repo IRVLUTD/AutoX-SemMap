@@ -1,0 +1,12 @@
+transforms3d
+empy
+pyyaml
+defusedxml
+catkin_pkg
+rospkg
+rosnumpy
+lxml
+opencv-python
+pillow
+networkx
+shapely
