@@ -72,4 +72,4 @@ docker run -it --rm \
 
 ## Testing AutoX-SemMap
 
-Once inside the Docker container, follow the instructions in the main section of the repository to test **AutoX-SemMap**.
+Once inside the Docker container, navigate to <code>/home/AutoX-SemMap/</code> and follow the instructions in the main section of the repository to test **AutoX-SemMap**. All operations and scripts should be executed within this directory.

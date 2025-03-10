@@ -65,6 +65,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-moveit-python \
     && rm -rf /var/lib/apt/lists/*
 
+# Clone AutoX-SemMap repository
+RUN git clone https://github.com/IRVLUTD/AutoX-SemMap.git /home
+
 # Load ROS environment at each run
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
