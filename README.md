@@ -11,7 +11,7 @@
 
 <div align="center"">
 
-[arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/q3bfSFYbX08)
+[arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/JZEqckOw2jM)
 
 </div>
 
