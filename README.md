@@ -19,20 +19,7 @@
 
 <!-- ![image info](./media/overview.webp) -->
 <div align="justify">
-We introduce a new robotic system that enables a mobile robot to autonomously explore an unknown
-environment, build a semantic map of the environment,
-and subsequently update the semantic map to reflect
-environment changes, such as location changes of objects.
-Our system leverages a LiDAR scanner for 2D occupancy
-grid mapping and an RGB-D camera for object perception.
-We introduce a semantic map representation that combines
-a 2D occupancy grid map for geometry, with a topological
-map for object semantics. This map representation enables
-us to effectively update the semantics by deleting or adding
-nodes to the topological map. Our system has been tested
-on a Fetch robot. The robot semantically mapped a
-93m×90m floor and updated the semantic map once objects
-are moved in the environment.
+We introduce a new robotic system that enables a mobile robot to autonomously explore an unknown environment, build a semantic map of the environment, and subsequently update the semantic map to reflect environment changes, such as location changes of objects. Our system leverages a LiDAR scanner for 2D occupancy grid mapping and an RGB-D camera for object perception. We introduce a semantic map representation that combines a 2D occupancy grid map for geometry with a topological map for object semantics. This map representation enables us to effectively update the semantics by deleting or adding nodes to the topological map. Our system has been tested on a Fetch robot, semantically mapping a 93m x 90m and a 9m x 13m indoor environment and updating their semantic maps once objects are moved in the environments
 </div>
 
 <br/>
