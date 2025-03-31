@@ -61,7 +61,7 @@ For any questions regarding this work, contact [Sai Haneesh Allu](https://saihan
 
 # Installation
 The following subsections provides detailed installation guidelines related to workspace setup, dependencies and other requirements to test this work effectively. 
-
+Additionally, a docker has been provided with instructions. Credits to [Iminolee](https://github.com/iminolee) .
 ## A.  Install ROS and Gazebo
 This code is tested on ros noetic version. Detailed installation instructions are found [here](http://wiki.ros.org/noetic/Installation/Ubuntu).To install ROS Noetic, execute the following commands in your terminal:
 ```
