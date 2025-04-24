@@ -18,7 +18,7 @@ A toolkit for robotic tasks. This toolkit is compiled by [Jishnu Jaykumar P](htt
 ### Installation
 Before installing, set the CUDA_HOME path. Make sure to replace your cuda path below.
 ```
-export CUDA_HOME=/use/local/cuda
+export CUDA_HOME=/usr/local/cuda
 ```
 ```sh
 pip install -r requirements.txt
