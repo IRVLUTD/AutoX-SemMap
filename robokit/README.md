@@ -2,11 +2,9 @@
 A toolkit for robotic tasks. This toolkit is compiled by [Jishnu Jaykumar P](https://jishnujayakumar.github.io/).
 
 ## Features
-- Zero-shot classification using OpenAI CLIP.
 - Zero-shot text-to-bbox approach for object detection using GroundingDINO.
 - Zero-shot bbox-to-mask approach for object detection using SegmentAnything (MobileSAM).
 - Zero-shot image-to-depth approach for depth estimation using Depth Anything.
-- Zero-shot feature upsampling using FeatUp.
 
 ## Getting Started
 
@@ -37,7 +35,6 @@ NameError: name '_C' is not defined
 - GroundingDINO + SAM: [`test_gdino_sam.py`](test/test_gdino_sam.py)
 - GroundingDINO + SAM + CLIP: [`test_gdino_sam_clip.py`](test/test_gdino_sam_clip.py)
 - Depth Anything: [`test_depth_anything.py`](test/test_depth_anything.py)
-- FeatUp: [`test_featup.py`](test/test_featup.py)
 - Test Datasets: [`test_dataset.py`](test/test_dataset.py)
   - `python test_dataset.py --gpu 0 --dataset <ocid_object_test/osd_object_test>`
 
@@ -68,11 +65,9 @@ Future goals for this project include:
 ## Acknowledgments
 
 This project is based on the following repositories (license check mandatory):
-- [CLIP](https://github.com/openai/CLIP)
 - [MobileSAM](https://github.com/ChaoningZhang/MobileSAM)
 - [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO)
 - [DepthAnything](https://huggingface.co/docs/transformers/main/en/model_doc/depth_anything#transformers.DepthAnythingForDepthEstimation)
-- [FeatUp](https://github.com/mhamilton723/FeatUp)
 
 
 ## License
