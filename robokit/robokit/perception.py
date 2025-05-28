@@ -4,15 +4,12 @@
 
 
 import os
-import clip
 import torch
 import logging
 import warnings
 import numpy as np
 from PIL import Image as PILImg
 import torchvision.transforms as tvT
-from featup.util import norm, unnorm
-from featup.plotting import plot_feats
 from torchvision.ops import box_convert
 from huggingface_hub import hf_hub_download
 from groundingdino.models import build_model
@@ -83,33 +80,6 @@ class CommonContextObject(Logger, Device):
         super(CommonContextObject, self).__init__()
 
 
-class FeatureUpSampler(CommonContextObject):
-    """
-    Root class for feature upsampling.
-    All other feature upsampling classes should inherit this.
-
-    Attributes:
-        logger: Logger instance for logging errors.
-    """
-    def __init__(self):
-        """
-        Initializes the DepthPredictor class.
-        """
-        super(FeatureUpSampler, self).__init__()
-
-    def upsample(self):
-        """
-        Upsample method for feature upscaling.
-        Raises NotImplementedError as it should be implemented by subclasses.
-
-        Raises:
-            NotImplementedError: If the method is not implemented by subclasses.
-        """
-        try:
-            raise NotImplementedError("Upsample method must be implemented by subclasses")
-        except NotImplementedError as e:
-            self.logger.error(f"Error in upsample method: {e}")
-            raise e
 
 
 class DepthPredictor(CommonContextObject):
@@ -141,66 +111,6 @@ class DepthPredictor(CommonContextObject):
             raise e
 
 
-class FeatUp(FeatureUpSampler):
-    """
-    A class for upsampling features using a pre-trained backbone model.
-
-    Attributes:
-        input_size (int): Input size of the images.
-        backbone_alias (str): Alias of the pre-trained backbone model.
-        upsampler (torch.nn.Module): Feature upsampling module.
-        logger (logging.Logger): Logger object for logging.
-    """
-
-    def __init__(self, backbone_alias, input_size, visualize_output=False):
-        """
-        Initializes the FeatUp class.
-
-        Args:
-            backbone_alias (str): Alias of the pre-trained backbone model.
-            input_size (int): Input size of the images.
-        """
-        super(FeatUp, self).__init__()
-        self.input_size = input_size
-        self.backbone_alias = backbone_alias
-        self.visualize_output = visualize_output
-        self.img_transform = tvT.Compose([
-            tvT.Resize(self.input_size),
-            tvT.CenterCrop((self.input_size, self.input_size)),
-            tvT.ToTensor(),
-            norm
-        ])
-        try:
-            self.upsampler = torch.hub.load("mhamilton723/FeatUp", self.backbone_alias).to(self.device)
-        except Exception as e:
-            self.logger.error(f"Error loading FeatUp model: {e}")
-            raise e
-
-    def upsample(self, image_tensor):
-        """
-        Upsamples the features of encoded input image tensor.
-
-        Args:
-            image_tensor (torch.Tensor): Input image tensor.
-
-        Returns:
-            Tuple: A tuple containing the original image tensor, backbone features, and upsampled features.
-        """
-        try:
-            image_tensor = image_tensor.to(self.device)
-            upsampled_features = self.upsampler(image_tensor) # upsampled features using backbone features; high resolution
-            backbone_features = self.upsampler.model(image_tensor) # backbone features; low resolution
-            orig_image = unnorm(image_tensor)
-            batch_size = orig_image.shape[0]
-            if self.visualize_output:
-                self.logger.info("Plot input image with backbone and upsampled output")
-                for i in range(batch_size):
-                    plot_feats(orig_image[i], backbone_features[i], upsampled_features[i])
-            return orig_image, backbone_features, upsampled_features
-
-        except Exception as e:
-            self.logger.error(f"Error during feature upsampling: {e}")
-            raise e
 
 
 class DepthAnythingPredictor(DepthPredictor):
@@ -471,73 +381,3 @@ class SegmentAnythingPredictor(ObjectPredictor):
             print(f"ValueError: {ve}")
             return None, None
 
-
-class ZeroShotClipPredictor(CommonContextObject):
-    def __init__(self):
-        super(ZeroShotClipPredictor, self).__init__()
-        
-        # Load the CLIP model
-        self.model, self.preprocess = clip.load('ViT-L/14@336px', self.device)
-        self.model.eval()
-
-    def get_features(self, images, text_prompts):
-        """
-        Extract features from a list of images and text prompts.
-
-        Parameters:
-        - images (list of PIL.Image): A list of PIL.Image representing images.
-        - text_prompts (list of str): List of text prompts.
-
-        Returns:
-        - Tuple of numpy.ndarray: Concatenated image features and text features as numpy arrays.
-
-        Raises:
-        - ValueError: If images is not a tensor or a list of tensors.
-        - RuntimeError: If an error occurs during feature extraction.
-        """
-        try:
-
-            with torch.no_grad():
-                text_inputs = torch.cat([clip.tokenize(prompt) for prompt in text_prompts]).to(self.device)
-                _images = torch.stack([self.preprocess(img) for img in images]).to(self.device)
-                img_features = self.model.encode_image(_images)
-                text_features = self.model.encode_text(text_inputs)
-            
-            return img_features, text_features
-
-        except ValueError as ve:
-            self.logger.error(f"ValueError in get_image_features: {ve}")
-            raise ve
-        except RuntimeError as re:
-            self.logger.error(f"RuntimeError in get_image_features: {re}")
-            raise re
-
-    def predict(self, image_array, text_prompts):
-        """
-        Run zero-shot prediction using CLIP model.
-
-        Parameters:
-        - image_array (List[torch.tensor]): List of tensor images.
-        - text_prompts (list): List of text prompts for prediction.
-
-        Returns:
-        - Tuple: Tuple containing prediction confidence and indices.
-        """
-        try:
-            # Perform prediction
-            image_features, text_features = self.get_features(image_array, text_prompts)
-
-            # Normalize features
-            image_features /= image_features.norm(dim=-1, keepdim=True)
-            text_features /= text_features.norm(dim=-1, keepdim=True)
-
-            # Calculate similarity
-            similarity = (100.0 * image_features @ text_features.T).softmax(dim=-1)
-            pconf, indices = similarity.topk(1)
-
-            return (pconf.flatten(), indices.flatten())
-
-        except Exception as e:
-            # Log error and raise exception
-            self.logger.error(f"Error during prediction: {e}")
-            raise e
