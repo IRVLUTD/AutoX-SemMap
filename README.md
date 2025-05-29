@@ -233,7 +233,7 @@ To construct or update the semantic map, the robot first needs to localize itsel
 Launch the localization module while specifying the saved *map.yaml* file path.
 
 ```
-roslaunch fetch navigation fetch_localize.launch map_file:=<absolute-path-of-map.yaml>
+roslaunch fetch_navigation fetch_localize.launch map_file:=<absolute-path-of-map.yaml>
 ```
 In another terminal publish the initial pose of the robot. This helps the localization moduls to have better initial estimate. 
 ```
