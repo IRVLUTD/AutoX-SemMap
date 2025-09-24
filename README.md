@@ -1,5 +1,5 @@
-<h1 align="center" style="font-size: 1.8em; font-weight: bold;">
-  Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots​​
+<h1 align="center" style="font-size: 1.4em; font-weight: bold;">
+  A Modular Robotic System for Autonomous Exploration and Semantic Updating in Large-Scale Indoor Environments​​
 </h1>
 
 <p align="center">
@@ -11,7 +11,7 @@
 
 <div align="center"">
 
-[arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://youtu.be/JZEqckOw2jM)
+[arXiv](https://arxiv.org/abs/2409.15493)  **|** [Project WebPage](https://irvlutd.github.io/SemanticMapping/)  **|** [Video](https://www.youtube.com/watch?v=z_Ch6kSjYvc)
 
 </div>
 
@@ -19,14 +19,32 @@
 
 <!-- ![image info](./media/overview.webp) -->
 <div align="justify">
-We introduce a new robotic system that enables a mobile robot to autonomously explore an unknown environment, build a semantic map of the environment, and subsequently update the semantic map to reflect environment changes, such as location changes of objects. Our system leverages a LiDAR scanner for 2D occupancy grid mapping and an RGB-D camera for object perception. We introduce a semantic map representation that combines a 2D occupancy grid map for geometry with a topological map for object semantics. This map representation enables us to effectively update the semantics by deleting or adding nodes to the topological map. Our system has been tested on a Fetch robot, semantically mapping a 93m x 90m and a 9m x 13m indoor environment and updating their semantic maps once objects are moved in the environments
+We present a modular robotic system for autonomous exploration and semantic updating of large-scale unknown environments. Our approach enables a mobile robot to
+              build, revisit, and update a hybrid semantic map that integrates
+              a 2D occupancy grid for geometry with a topological graph for
+              object semantics. Unlike prior methods that rely on manual
+              teleoperation or precollected datasets, our two-phase approach
+              achieves end-to-end autonomy: first, a modified frontier-based
+              exploration algorithm with dynamic search windows constructs
+              a geometric map; second, using a greedy trajectory planner,
+              environments are revisited, and object semantics are updated
+              using open-vocabulary object detection and segmentation. This
+              modular system, compatible with any metric SLAM frame-
+              work, supports continuous operation by efficiently updating
+              the semantic graph to reflect short-term and long-term changes
+              such as object relocation, removal, or addition. We validate the
+              approach on a Fetch robot in real-world indoor environments of
+              approximately 8,500 sq.m and 117 sq.m, demonstrating robust and
+              scalable semantic mapping and continuous adaptation, marking
+              a fully autonomous integration of exploration, mapping, and
+              semantic updating on a physical robot.
 </div>
 
 <br/>
 <br/>
 
 <p align="center">
-  <img src="./media/overview.webp" alt="image info" width="700"/>
+  <img src="./media/overview.png" alt="image info" width="700"/>
 </p>
 
 <br/>
@@ -34,12 +52,15 @@ We introduce a new robotic system that enables a mobile robot to autonomously ex
 # Citation
 Please cite this work if it helps in your research
 ```
-@inproceedings{allu2024semanticmapping,
-      title={Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots},
-      author={Allu, Sai Haneesh and Kadosh, Itay and Summers, Tyler and Xiang, Yu},
-      journal={arXiv preprint arXiv:2409.15493},
-      year={2024}
-    }
+@misc{allu2025modularroboticautonomousexploration,
+        title={A Modular Robotic System for Autonomous Exploration and Semantic Updating in Large-Scale Indoor Environments}, 
+        author={Sai Haneesh Allu and Itay Kadosh and Tyler Summers and Yu Xiang},
+        year={2025},
+        eprint={2409.15493},
+        archivePrefix={arXiv},
+        primaryClass={cs.RO},
+        url={https://arxiv.org/abs/2409.15493}
+}
 ```
 
 For any questions regarding this work, contact [Sai Haneesh Allu](https://saihaneeshallu.github.io/). For any issues regarding this code, please raise an [issue](https://github.com/IRVLUTD/AutoX-SemMap/issues).
@@ -326,5 +347,5 @@ These videos showcase brief clips of experiments demonstrating autonomous explor
 
 
 # Acknowledgement
-This work was supported by the DARPA Perceptuallyenabled Task Guidance (PTG) Program under contract number HR00112220005 and the Sony Research Award Program. The work of T. Summers was supported by the United States Air Force Office of Scientific Research under Grant FA9550- 23-1-0424 and the National Science Foundation under Grant ECCS-2047040. We would like to thank our colleague, [Jishnu Jaykumar P](https://jishnujayakumar.github.io/), for his assistance during the experiments.
+This work was supported by the DARPA Perceptuallyenabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553 and the NVIDIA Academic Grant Program Award. The work of T. Summers was supported by the United States Air Force Office of Scientific Research under Grant FA9550- 23-1-0424 and the National Science Foundation under Grant ECCS-2047040. We would like to thank our colleague, [Jishnu Jaykumar P](https://jishnujayakumar.github.io/), for his assistance during the experiments.
 
