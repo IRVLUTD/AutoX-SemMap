@@ -1,6 +1,5 @@
 <h1 align="center" style="font-size: 1.4em; font-weight: bold;">
-  A Modular Robotic System for Autonomous Exploration and Semantic Updating in Large-Scale Indoor Environments​​
-</h1>
+Build Once, Monitor Continuously: Persistent Semantic Mapping via Autonomous Exploration and Open-Vocabulary Object Updates</h1>
 
 <p align="center">
   <a href="https://saihaneeshallu.github.io/">Sai Haneesh Allu</a>, 
@@ -19,25 +18,7 @@
 
 <!-- ![image info](./media/overview.webp) -->
 <div align="justify">
-We present a modular robotic system for autonomous exploration and semantic updating of large-scale unknown environments. Our approach enables a mobile robot to
-              build, revisit, and update a hybrid semantic map that integrates
-              a 2D occupancy grid for geometry with a topological graph for
-              object semantics. Unlike prior methods that rely on manual
-              teleoperation or precollected datasets, our two-phase approach
-              achieves end-to-end autonomy: first, a modified frontier-based
-              exploration algorithm with dynamic search windows constructs
-              a geometric map; second, using a greedy trajectory planner,
-              environments are revisited, and object semantics are updated
-              using open-vocabulary object detection and segmentation. This
-              modular system, compatible with any metric SLAM frame-
-              work, supports continuous operation by efficiently updating
-              the semantic graph to reflect short-term and long-term changes
-              such as object relocation, removal, or addition. We validate the
-              approach on a Fetch robot in real-world indoor environments of
-              approximately 8,500 sq.m and 117 sq.m, demonstrating robust and
-              scalable semantic mapping and continuous adaptation, marking
-              a fully autonomous integration of exploration, mapping, and
-              semantic updating on a physical robot.
+Persistent semantic monitoring of indoor spaces such as warehouses, hospitals, and offices requires a robot to repeatedly monitor an environment and track how objects change over time. Running full simultaneous localization and mapping (SLAM) with dense semantic reconstruction from scratch on every visit is redundant when the environment geometry stays the same and only the objects move. We present a modular two-stage system that separates geometric mapping from semantic updating. In the first stage, a frontier-based exploration method with a dynamic search window builds a 2D occupancy grid. In the second stage, the robot relocalizes in this map and builds a semantic object graph using an open-vocabulary object detector and a promptable segmentation model. Only the lightweight semantic stage is repeated on later visits, so the system scales well to frequent revisits. The object graph uses a category and distance based association rule to update objects, which lets the map reflect both intra-session changes (object changes within a single traversal) and inter-session changes (changes across revisits), such as objects being moved, removed, or added. We validate the system on a Fetch robot in two real indoor environments of about 8,500 sq.m and 117 sq.m, and report precision, recall, and F1 scores across multiple update iterations.
 </div>
 
 <br/>
@@ -52,14 +33,14 @@ We present a modular robotic system for autonomous exploration and semantic upda
 # Citation
 Please cite this work if it helps in your research
 ```
-@misc{allu2025modularroboticautonomousexploration,
-        title={A Modular Robotic System for Autonomous Exploration and Semantic Updating in Large-Scale Indoor Environments}, 
-        author={Sai Haneesh Allu and Itay Kadosh and Tyler Summers and Yu Xiang},
-        year={2025},
-        eprint={2409.15493},
-        archivePrefix={arXiv},
-        primaryClass={cs.RO},
-        url={https://arxiv.org/abs/2409.15493}
+@misc{allu2026buildoncemonitorcontinuously,
+      title={Build Once, Monitor Continuously: Persistent Semantic Mapping via Autonomous Exploration and Open-Vocabulary Object Updates}, 
+      author={Sai Haneesh Allu and Itay Kadosh and Tyler Summers and Yu Xiang},
+      year={2026},
+      eprint={2409.15493},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2409.15493}, 
 }
 ```
 
