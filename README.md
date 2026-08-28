@@ -62,10 +62,10 @@ For any questions regarding this work, contact [Sai Haneesh Allu](https://saihan
 
 
 # Installation
-The following subsections provides detailed installation guidelines related to workspace setup, dependencies and other requirements to test this work effectively. 
-Additionally, a docker has been provided with instructions. Credits to [Iminolee](https://github.com/iminolee) .
+The following subsections provide detailed installation guidelines related to workspace setup, dependencies and other requirements to test this work effectively. 
+Additionally, a docker has been provided with instructions. Credits to [Iminolee](https://github.com/iminolee).
 ## A.  Install ROS and Gazebo
-This code is tested on ros noetic version. Detailed installation instructions are found [here](http://wiki.ros.org/noetic/Installation/Ubuntu).To install ROS Noetic, execute the following commands in your terminal:
+This code is tested on ros noetic version. Detailed installation instructions are found [here](http://wiki.ros.org/noetic/Installation/Ubuntu). To install ROS Noetic, execute the following commands in your terminal:
 ```
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 
@@ -122,10 +122,10 @@ catkin_make
 source devel/setup.bash
 ```
 
-> If the compilation doesn't conisder python3 by default, compile with the following command. Make sure to use correct python path.
+> If the compilation doesn't consider python3 by default, compile with the following command. Make sure to use correct python path.
 ```
 catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
-source devel/setp.bash
+source devel/setup.bash
 ```
 
 ## F. Install Robokit
@@ -202,7 +202,7 @@ https://github.com/user-attachments/assets/cf0d4105-ab1b-430b-87c4-44465b01f557
 <br/>
 
 # Environment Traversal planning
-This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire evnvironment.  Copy the ***map.pgm*** and ***map.yaml*** files saved after exploration, from the home directory to this scripts. Update the image path in ***map.yaml*** to reflect correct ***map.pgm*** image path.
+This section describes how to plan the robot's traversal through the environment. When the map has been built, robot does not need to explore the environment again. So from the explored trajectory, we compute a low cost trajectory ( sequence of points) for the robot to visit the entire environment.  Copy the ***map.pgm*** and ***map.yaml*** files saved after exploration from the home directory into the ***scripts*** directory. Update the image path in ***map.yaml*** to point to the copied ***map.pgm***.
 ```
 cd AutoX-SemMap/scripts
 ```
@@ -213,11 +213,11 @@ From the saved data-folder at the end of exploration, first get the recorded rob
 python extract_robot_trajectory.py <data-folder>
 ```
 ## B. Generate traversal trajectory - Travelling Salesman Problem 
-Next, sample the poses and plan the sequence to visit the sampled points at low cost, using a Traveling Salesman Problem fomrulation.  
+Next, sample the poses and plan the sequence to visit the sampled points at low cost, using a Traveling Salesman Problem formulation.  
 ```
 python tsp_surveillance_trajectory.py robot_trajectory.json
 ```
-This saves the sequence of sampled points as ***surveillance_traj.npz*** and alos displays the seques as shown below. 
+This saves the sequence of sampled points as ***surveillance_traj.npz*** and also displays the sequence as shown below. 
 
 
 https://github.com/user-attachments/assets/10d6edcd-1a69-45dc-8038-68448d104e47
@@ -229,7 +229,7 @@ https://github.com/user-attachments/assets/10d6edcd-1a69-45dc-8038-68448d104e47
 <br/>
 
 # Semantic Map Construction and Update
-To construct or update the semantic map, the robot first needs to localize itself in the built map and traverse the environment to see the things. For this, either move the robot to initial position (x=0, y=0, yaw=0) in gazebo or delete the robot in gazebo and spawn it again ( make sure to tuck and set the head pose). 
+To construct or update the semantic map, the robot first needs to localize itself in the built map and traverse the environment to observe the objects. For this, either move the robot to initial position (x=0, y=0, yaw=0) in gazebo or delete the robot in gazebo and spawn it again ( make sure to tuck and set the head pose). 
 
 ## A. Localization
 Launch the localization module while specifying the saved *map.yaml* file path.
@@ -237,13 +237,13 @@ Launch the localization module while specifying the saved *map.yaml* file path.
 ```
 roslaunch fetch_navigation fetch_localize.launch map_file:=<absolute-path-of-map.yaml>
 ```
-In another terminal publish the initial pose of the robot. This helps the localization moduls to have better initial estimate. 
+In another terminal publish the initial pose of the robot. This helps the localization module to have a better initial estimate. 
 ```
 rosrun fetch_navigation pub_initial_pose.py
 ```
 
 ## B. Construction
-To construct the semantic map, start the object detection and segmentation module, and perform object association while traversing the environment. Run the following scripts simultaneously in two terminals to construct the semnantic map while traversing the environment.  
+To construct the semantic map, start the object detection and segmentation module, and perform object association while traversing the environment. Run the following scripts simultaneously in two terminals to construct the semantic map while traversing the environment.  
 ```
 cd AutoX-SemMap/robokit
 python semantic_map_construction.py
@@ -282,7 +282,7 @@ Once the traversal is completed, close the scripts and the updated semantic map 
 # Running on a real robot system
 ## A. Running on a Fetch robot
 
-Since fetch robot doesn't have a GPU, we assume you have a remote system connected to Fetch robot via WiFi or Ethernet connection. You can use this repository as it is and follow the instructions to install it on your remote system. You can skip the installation of gazebo and the initialization section as you have the actual robot. Other than that you can run the sections [Mapping and Exploration](#mapping-and-exploration) ,  [Environment Traversal planning](#environment-traversal-planning) ,  [Semantic Map Construction and Update](#semantic-map-construction-and-update)  as described. 
+Since the Fetch robot doesn't have a GPU, we assume you have a remote system connected to Fetch robot via WiFi or Ethernet connection. You can use this repository as it is and follow the instructions to install it on your remote system. You can skip the installation of gazebo and the initialization section as you have the actual robot. Other than that you can run the sections [Mapping and Exploration](#mapping-and-exploration) ,  [Environment Traversal planning](#environment-traversal-planning) ,  [Semantic Map Construction and Update](#semantic-map-construction-and-update)  as described. 
 
 
 ## B. Running on any other robot
@@ -306,7 +306,7 @@ We assume that either your robot has a GPU or you use a remote system with GPU a
 <br/>
 
 # Real World Demo
-These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. Click to view the vidoes. 
+These videos showcase brief clips of experiments demonstrating autonomous exploration and mapping, and semantic map construction in a large indoor environment measuring 96m x 93m. Click to view the videos. 
 
 
 <table>
@@ -328,5 +328,5 @@ These videos showcase brief clips of experiments demonstrating autonomous explor
 
 
 # Acknowledgement
-This work was supported by the DARPA Perceptuallyenabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553 and the NVIDIA Academic Grant Program Award. The work of T. Summers was supported by the United States Air Force Office of Scientific Research under Grant FA9550- 23-1-0424 and the National Science Foundation under Grant ECCS-2047040. We would like to thank our colleague, [Jishnu Jaykumar P](https://jishnujayakumar.github.io/), for his assistance during the experiments.
+This work was supported by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553 and the NVIDIA Academic Grant Program Award. The work of T. Summers was supported by the United States Air Force Office of Scientific Research under Grant FA9550-23-1-0424 and the National Science Foundation under Grant ECCS-2047040. We would like to thank our colleague, [Jishnu Jaykumar P](https://jishnujayakumar.github.io/), for his assistance during the experiments.
 
