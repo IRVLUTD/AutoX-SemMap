@@ -2,6 +2,10 @@
 Build Once, Monitor Continuously: Persistent Semantic Mapping via Autonomous Exploration and Open-Vocabulary Object Updates</h1>
 
 <p align="center">
+  <b>IROS 2026 WORLDS Workshop</b>
+</p>
+
+<p align="center">
   <a href="https://saihaneeshallu.github.io/">Sai Haneesh Allu</a>, 
   <a href="https://www.linkedin.com/in/itay-kadosh-695718239/">Itay Kadosh</a>, 
   <a href="https://personal.utdallas.edu/~tyler.summers/">Tyler Summers</a>, 
